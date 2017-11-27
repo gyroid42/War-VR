@@ -157,6 +157,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 23737728459995674, guid: 10a6bb280ebef964e91f9a58c74734d7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0176edf7bb5469b409682d4d7d5ebfeb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10a6bb280ebef964e91f9a58c74734d7, type: 2}
   m_IsPrefabParent: 0
@@ -495,5 +500,5 @@ MonoBehaviour:
   interactables_:
   - {fileID: 46919375}
   - {fileID: 27062360}
-  lookAccuracy: 15
+  lookAccuracy: 10
   timeToExamine: 3

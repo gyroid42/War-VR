@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractableUpdate : MonoBehaviour {
 
+    public Shader shaderOutline_;
+    public Shader shaderDefault_;
     public float zoomDistance_;
     public float zoomSpeed_;
     public Vector3 startPos_;
@@ -12,6 +14,7 @@ public class InteractableUpdate : MonoBehaviour {
     private Camera camera_;
     private bool active_;
     private AudioSource audio_;
+    private Material material_;
 
 
 	// Use this for initialization
@@ -22,6 +25,9 @@ public class InteractableUpdate : MonoBehaviour {
         startPos_ = transform.position;
 
         audio_ = gameObject.GetComponent<AudioSource>();
+        material_ = gameObject.GetComponent<MeshRenderer>().material;
+
+        material_.shader = shaderDefault_;
 
         active_ = false;
 	}
@@ -61,8 +67,22 @@ public class InteractableUpdate : MonoBehaviour {
         }
 	}
 
+    public void Selecting() {
+
+        material_.shader = shaderOutline_;
+
+
+    }
+
+    public void UnSelecting() {
+
+        material_.shader = shaderDefault_;
+
+    }
+
 
     public void EnterLookAt() {
+
 
         audio_.Play();
 
@@ -76,6 +96,8 @@ public class InteractableUpdate : MonoBehaviour {
         audio_.Stop();
 
         active_ = false;
+
+        UnSelecting();
     }
 
 

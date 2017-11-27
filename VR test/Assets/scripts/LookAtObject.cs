@@ -218,6 +218,8 @@ public class LookAtObject : MonoBehaviour {
 
                 currentObject_ = interactables_[i];
 
+                currentObject_.GetComponent<InteractableUpdate>().Selecting();
+
                 found = true;
                 Debug.Log("is looking at object");
 
@@ -234,6 +236,9 @@ public class LookAtObject : MonoBehaviour {
 
         // if not looking at current object
         if (!checkIfLooking(currentObject_)) {
+
+            currentObject_.GetComponent<InteractableUpdate>().UnSelecting();
+
 
             Debug.Log("is no longer looking");
             nextState_ = LOOK_AT_STATE.FINDING_OBJECT;
@@ -252,6 +257,8 @@ public class LookAtObject : MonoBehaviour {
 
 
         if (!checkIfLooking(currentObject_)) {
+
+            currentObject_.GetComponent<InteractableUpdate>().UnSelecting();
 
             Debug.Log("is no longer looking");
             nextState_ = LOOK_AT_STATE.FINDING_OBJECT;
