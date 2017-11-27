@@ -6,7 +6,7 @@ public class InteractableUpdate : MonoBehaviour {
 
     public float zoomDistance_;
     public float zoomSpeed_;
-    private Vector3 startPos_;
+    public Vector3 startPos_;
     private Vector3 gotoPos_;
 
     private Camera camera_;
@@ -31,9 +31,10 @@ public class InteractableUpdate : MonoBehaviour {
 
         if (active_) {
 
-            if ((transform.position - startPos_).sqrMagnitude < zoomDistance_ * zoomDistance_) {
+            Vector3 object2Cam = camera_.transform.position - transform.position;
 
-                Vector3 object2Cam = camera_.transform.position - transform.position;
+            if ((object2Cam).sqrMagnitude > zoomDistance_ * zoomDistance_) {
+
                 object2Cam.Normalize();
 
                 transform.position += object2Cam * zoomSpeed_ * Time.deltaTime;

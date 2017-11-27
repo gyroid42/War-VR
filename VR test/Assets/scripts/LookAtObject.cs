@@ -264,7 +264,7 @@ public class LookAtObject : MonoBehaviour {
     bool checkIfLooking(GameObject Object) {
 
 
-        Vector3 Cam2Object = Object.transform.position - Camera.main.transform.position;
+        Vector3 Cam2Object = Object.GetComponent<InteractableUpdate>().startPos_ - Camera.main.transform.position;
 
         float angle = Vector3.Angle(Camera.main.transform.forward, Cam2Object);
 
