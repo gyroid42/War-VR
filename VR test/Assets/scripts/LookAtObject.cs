@@ -76,6 +76,8 @@ public class LookAtObject : MonoBehaviour {
     public float lookAccuracy = 180.0f;
     public float timeToExamine;
 
+    private InteractableUpdate objectUpdate_;
+
 	// Use this for initialization
 	void Start () {
 
@@ -101,6 +103,13 @@ public class LookAtObject : MonoBehaviour {
     }
     void InitLookingAt() {
 
+        //audio = currentObject_.GetComponent<AudioSource>();
+        //audio.Play();
+
+        objectUpdate_ = currentObject_.GetComponent<InteractableUpdate>();
+
+        objectUpdate_.EnterLookAt();
+
     }
 
     void CleanupFinding() {
@@ -116,6 +125,10 @@ public class LookAtObject : MonoBehaviour {
         timer_.setActive(false);
     }
     void CleanupLookingAt() {
+
+        objectUpdate_.ExitLookAt();
+
+        objectUpdate_ = null;
 
     }
 
@@ -236,6 +249,14 @@ public class LookAtObject : MonoBehaviour {
 
     }
     void LookingAtUpdate() {
+
+
+        if (!checkIfLooking(currentObject_)) {
+
+            Debug.Log("is no longer looking");
+            nextState_ = LOOK_AT_STATE.FINDING_OBJECT;
+            isChangingState_ = true;
+        }
 
     }
 
